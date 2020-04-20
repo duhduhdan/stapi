@@ -12,7 +12,7 @@ function DetailsModal({ navigation }: AnyObject) {
   );
 }
 
-const MODAL_STACK = [
+const MODALS = [
   {
     name: "details.modal",
     component: DetailsModal,
@@ -22,4 +22,4 @@ const MODAL_STACK = [
   },
 ];
 
-export { MODAL_STACK };
+export { MODALS };

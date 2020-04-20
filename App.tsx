@@ -16,7 +16,7 @@ import { TasksStack } from "./components/stacks/TasksStack";
 import { AppointmentsStack } from "./components/stacks/AppointmentsStack";
 import { CommunicationStack } from "./components/stacks/CommunicationStack";
 import { SettingsStack } from "./components/stacks/SettingsStack";
-import { MODAL_STACK } from "./components/stacks/ModalStack";
+import { MODALS } from "./components/stacks/ModalStack";
 
 enableScreens();
 
@@ -76,7 +76,7 @@ function TabStack() {
 // In order to allow stacks to not display the tab bar, we need to register them
 // outside of the tab stack, e.g. instead of using a modal for conversation, we
 // can just register it outside of the tab stack.
-function HiddenStack() {
+function MainStack() {
   return (
     <HiddenTabBarStack.Navigator
       screenOptions={{ headerBackTitleVisible: false }}
@@ -95,7 +95,7 @@ function HiddenStack() {
   );
 }
 
-function MainStack() {
+function ModalStack() {
   return (
     <Stack.Navigator
       mode="modal"
@@ -109,10 +109,10 @@ function MainStack() {
     >
       <Stack.Screen
         name="Tabs"
-        component={HiddenStack}
+        component={MainStack}
         options={{ headerShown: false }}
       />
-      {MODAL_STACK.map((modal: AnyObject) => (
+      {MODALS.map((modal: AnyObject) => (
         <Stack.Screen
           name={modal.name}
           component={modal.component}
@@ -131,7 +131,7 @@ export default function App() {
         <RootStack.Screen
           name="Root"
           options={{ headerShown: false }}
-          component={MainStack}
+          component={ModalStack}
         />
       </RootStack.Navigator>
     </NavigationContainer>
